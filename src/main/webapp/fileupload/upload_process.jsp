@@ -1,0 +1,52 @@
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="java.io.File" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" info="" %>
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>upload_frm</title>
+  <link rel="stylesheet" href="../common/css/main_20240911.css">
+  <!--    bootstrap CDN  start-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"></script>
+  <!--    JQuery CDN start-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <style>
+
+  </style>
+</head>
+<body>
+<div id="wrap">
+<%-- 업로더 : <%= request.getParameter("uploader")%><br>--%>
+<%--  EL : ${param.uploader}--%>
+요청방식 : <%= request.getMethod()%>
+  <%
+    File file =new File("/Users/chaseongho/Desktop/2019219071/demo/src/main/webapp/upload");
+    file.
+  %>
+</div>
+<script>
+    $(function () {
+      $('#btn').click(()=>{
+         chkNull();
+      });
+
+    })
+
+    function chkNull(){
+        if($('#uploader').val() == ""){
+            alert("업로더는 필수 입력!!");
+            $('#uploader').focus();
+            return;
+        }
+
+    }
+</script>
+</body>
+</html>
+</html>
