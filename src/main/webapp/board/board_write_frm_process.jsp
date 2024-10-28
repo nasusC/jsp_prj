@@ -1,10 +1,29 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="kr.co.sist.user.board.BoardDAO" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" info="" %>
+<%@ include file="../common/session_chk.jsp" %>
+<%@ include file="../common/post_chk.jsp" %>
+
+<jsp:useBean id="bVO" class="kr.co.sist.user.board.BoardVO" scope="page"/>
+<jsp:setProperty name="bVO" property="*"/>
+<jsp:setProperty name="bVO" property="ip" value="<%=remoteIp%>"/>
+
+<%
+  boolean insertFlag = false;
+  try {
+    BoardDAO bDAO = BoardDAO.getInstance();
+    bDAO.insertBoard(bVO);
+    insertFlag = true;
+  } catch (SQLException se) {
+    se.printStackTrace();
+  }
+  pageContext.setAttribute("insertFlag", insertFlag);
+%>
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>index.html</title>
+  <title>board_write_process</title>
   <link rel="stylesheet" href="../common/css/main_20240911.css">
   <!--    bootstrap CDN  start-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -20,25 +39,18 @@
   </style>
 </head>
 <body>
-<div id="header">
-  <c:import url="common/header.jsp"/>
-</div>
 <div id="wrap">
-  <c:choose>
-  <c:when test="${ empty sessionScope.userData }">
-    <a href="member/join_frm.jsp">회원가입</a>
-    <a href="login/login_frm.jsp">로그인</a>
-  </c:when>
-    <c:otherwise>
-    <a href="login/login_out.jsp">로그아웃</a>
-      <a href="#void" title="마이페이지"><c:out value="${userData.id}(${userData.name})님 로그인 중"></c:out></a>
-  </c:otherwise>
-  </c:choose>
-  <a href="board/board_list.jsp">게시판</a>
-  <a href="mypage/mypage.jsp">마이페이지</a>
 
 </div>
 <script>
+    if(${insertFlag}){
+        alert('${userData.id}님 글을 작성하였습니다.')
+        location.href = 'board_list.jsp';
+    }else{
+        alert('글 쓰기 시에 문제가 발생하였습니다.')
+        history.back();
+    }
+
     $(function () {
 
     })

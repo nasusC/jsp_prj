@@ -3,6 +3,8 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/board/board_delete_process.jsp" value="file://$PROJECT_DIR$/src/main/webapp/board" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/board/board_list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/board" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/day1001/use_scriptlet.jsp" value="file://$PROJECT_DIR$/src/main/webapp/day1001" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/day1016/forward_frm_process.jsp" value="file://$PROJECT_DIR$/src/main/webapp/day1016" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/login/login_frm_process.jsp" value="file://$PROJECT_DIR$/src/main/webapp/login" />
