@@ -50,16 +50,41 @@
         </tr>
       </c:when>
       <c:otherwise>
-        <% int ind = 0;
+        <%
+          session.removeAttribute("UPLOAD_SESSION_ID");
+          int ind = 0;
           SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd EEEE HH:mm:ss");
           for (File tempFile : listFile) {%>
-            <tr>
-              <td><%=++ind%></td>
-              <td><img src="../upload/<%=tempFile.getName()%>" style="width: 100%; height: 50%"/></td>
-              <td><%=tempFile.getName()%></td>
-              <td><%=tempFile.length()%></td>
-              <td><%=sdf.format(new Date(tempFile.lastModified()))%></td>
-            </tr>
+        <tr>
+          <td><%=++ind%>
+          </td>
+            <%--              <td><img src="../upload/<%=tempFile.getName()%>" style="width: 100%; height: 50%"/></td>--%>
+          <td>
+            <%
+              String fileName = tempFile.getName();
+              String fileExt = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
+              // 확장자가 jpg,gif, png, bmp, txt, js, css, html인 경우는 링크를 설정하여
+              // 웹브라우저에서 보이도록 만들어보세요.
+              String[] allowedExt = {".jpg", ".gif", ".png", ".bmp", ".txt", ".js", ".css", ".html"};
+              for (String ext : allowedExt) {
+                if (ext.equals(fileExt)) {
+            %>
+            <img src="../upload/<%=tempFile.getName()%>" style="width: 100px; height: 100px"/>
+            <%
+                  break;
+                }
+              }
+            %>
+            <%=fileName%>
+            (<a href="download.jsp?fileName=<%=tempFile.getName()%>">다운로드</a>)
+          </td>
+          <td><%=tempFile.getName()%>
+          </td>
+          <td><%=tempFile.length()%>
+          </td>
+          <td><%=sdf.format(new Date(tempFile.lastModified()))%>
+          </td>
+        </tr>
         <%
           }
         %>

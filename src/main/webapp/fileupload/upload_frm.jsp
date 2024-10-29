@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" info="" %>
+<%
+  session.setAttribute("uploadFlag",false);
+%>
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -60,17 +63,17 @@
         // 업로드 가능 확장자는 이미지 관련 확장자만 가능하도록 유효성 검증
         // jpg, gif, png, bmp 확장자만 업로드 가능
         // 위의 확장자가 아니면 alert("업로드 가능 확장자가 아닙니다.")를 보여주고 얼리리턴
-        var ext = ['jpg','gif','png','bmp'];
-
-        var fileName = $('#upfile').val();
-        var fileExt = fileName.split('.').pop().toLowerCase();
-
-
-        if(!ext.includes(fileExt)){
-            alert("업로드가 가능한 확장자가 아닙니다.");
-            $('#upfile').val('');
-            return;
-        }
+        // var ext = ['jpg','gif','png','bmp'];
+        //
+        // var fileName = $('#upfile').val();
+        // var fileExt = fileName.split('.').pop().toLowerCase();
+        //
+        //
+        // if(!ext.includes(fileExt)){
+        //     alert("업로드가 가능한 확장자가 아닙니다.");
+        //     $('#upfile').val('');
+        //     return;
+        // }
 
 
 
