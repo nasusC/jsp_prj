@@ -24,16 +24,24 @@
   <form action="upload_process.jsp" method="post" enctype="multipart/form-data" id="frm" name="frm">
     <label for="uploader">업로더</label>
     <input type="text" name="uploader" id="uploader"><br>
-    <label for="upfile">업로더</label>
+    <label for="">파일확장자</label><br>
+    <input type="checkbox" name="ext" value="jpg">jpg
+    <input type="checkbox" name="png" value="png">png
+    <input type="checkbox" name="exe" value="exe">exe
+    <input type="checkbox" name="svg" value="svg">svg
+    <input type="checkbox" name="sql" value="sql">sql<br>
+    <label for="upfile">파일</label>
     <input type="file" name="upfile" id="upfile"><br>
     <input type="submit" value="업로드" id="btn" class="btn btn-primary btn-sm">
+    <a href="file_list.jsp">파일 리스트 보기</a>
 
   </form>
 
 </div>
 <script>
     $(function () {
-      $('#btn').click(()=>{
+      $('#btn').click((e)=>{
+          e.preventDefault();  // 기본 제출 동작 막기
          chkNull();
       });
 
@@ -45,6 +53,28 @@
             $('#uploader').focus();
             return;
         }
+        if($('#upfile').val() == ""){
+            alert("업로더 파일은 필수 입력!!");
+            return;
+        }
+        // 업로드 가능 확장자는 이미지 관련 확장자만 가능하도록 유효성 검증
+        // jpg, gif, png, bmp 확장자만 업로드 가능
+        // 위의 확장자가 아니면 alert("업로드 가능 확장자가 아닙니다.")를 보여주고 얼리리턴
+        var ext = ['jpg','gif','png','bmp'];
+
+        var fileName = $('#upfile').val();
+        var fileExt = fileName.split('.').pop().toLowerCase();
+
+
+        if(!ext.includes(fileExt)){
+            alert("업로드가 가능한 확장자가 아닙니다.");
+            $('#upfile').val('');
+            return;
+        }
+
+
+
+        $('#frm').submit();
 
     }
 </script>
